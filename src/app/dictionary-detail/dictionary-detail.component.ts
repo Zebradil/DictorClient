@@ -7,7 +7,7 @@ import { Dictionary } from '../dictionary';
 @Component({
   selector: 'app-dictionary-detail',
   templateUrl: './dictionary-detail.component.html',
-  styleUrls: ['./dictionary-detail.component.css']
+  styleUrls: ['./dictionary-detail.component.scss']
 })
 export class DictionaryDetailComponent implements OnInit {
 

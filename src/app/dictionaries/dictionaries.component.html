@@ -1,8 +1,25 @@
-<h2>Dictionaries:</h2>
-<ul class="dictionaries">
-  <li *ngFor="let dictionary of dictionaries" [class.selected]="dictionary === selectedDictionary">
-    <a routerLink="/dictionary/{{dictionary.id}}">
-      <span class="badge">{{dictionary.id}}</span>{{dictionary.name}}
-    </a>
+<ol class="breadcrumb">
+  <li>
+    <a routerLink="{{site.mainPage.link}}">{{site.mainPage.title|titlecase}}</a>
   </li>
-</ul>
+  <li class="active">{{page.title|titlecase}}</li>
+</ol>
+
+<h1>
+  {{page.title|titlecase}}
+  <!-- {{ common.glyphicon('plus-sign text-success', path('dictionary_new'), 'dictionary.create'|trans|capitalize, 'ROLE_ADMIN') }} -->
+</h1>
+
+<div class="dictionary-list">
+  <div *ngFor="let dictionary of dictionaries"
+    class="dictionary-list-item">
+    <h3>
+      <a routerLink="/dictionary/{{dictionary.id}}">{{dictionary.name|titlecase}}</a>
+    </h3>
+    <p class="dictionary-description">{{dictionary.description}}</p>
+    <h4>
+      <a routerLink="/dictionary/{{dictionary.id}}/articles">Articles list</a>
+    </h4>
+    <hr>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+@import './_variables';
+html {
+  height: 100%;
+}
+
+body {
+  padding-top: $navBarHeight;
+  background: white;
+  position: relative;
+  padding-bottom: $footerHeight + 10;
+  min-height: 100%;
+}
+
+.logged span {
+  color: whitesmoke;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  .glyphicon {
+    font-size: 0.7em;
+  }
+}

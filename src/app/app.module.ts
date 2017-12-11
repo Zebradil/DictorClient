@@ -10,6 +10,9 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import { DictionaryService } from './dictionary.service';
 import { AppRoutingModule } from './/app-routing.module';
 import { ArticleService } from './article.service';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SiteService } from './site.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -18,13 +21,15 @@ import { ArticleService } from './article.service';
     DictionariesComponent,
     ArticlesComponent,
     DictionaryDetailComponent,
-    ArticleDetailComponent
+    ArticleDetailComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [DictionaryService, ArticleService],
+  providers: [DictionaryService, ArticleService, SiteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
