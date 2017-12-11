@@ -1,0 +1,8 @@
+<h2>Dictionaries:</h2>
+<ul class="dictionaries">
+  <li *ngFor="let dictionary of dictionaries" [class.selected]="dictionary === selectedDictionary">
+    <a routerLink="/dictionary/{{dictionary.id}}">
+      <span class="badge">{{dictionary.id}}</span>{{dictionary.name}}
+    </a>
+  </li>
+</ul>
