@@ -25,7 +25,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   getArticles(): void {
-    const dictionaryId = +this.route.snapshot.paramMap.get('id');
+    const dictionaryId = +this.route.snapshot.paramMap.get('dictionaryId');
     this.articleService
       .getArticles(dictionaryId)
       .subscribe(articles => this.articles = articles);

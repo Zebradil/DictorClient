@@ -1,6 +1,29 @@
-<ul>
-  <li *ngFor="let article of articles">
-    <a routerLink="/article/{{article.id}}">
-      <span>{{article.id}}</span>{{article.title}}, {{article.grammar}}</a>
-  </li>
-</ul>
+<div class="article-list">
+      <div *ngFor="let article of articles" class="article article-list-item">
+          <div class="title">
+              <a routerLink="/article/{{ article.id }}">
+                  {{ article.title | titlecase }}{{ article.grammar ? ',' : '' }}
+              </a>
+          </div>
+          <div *ngIf="article.grammar" class="grammar">{{ article.grammar }}</div>
+          <!-- {% for meaning in article.meanings %}
+              <div class="meaning">
+                  {% if loop.length > 1 %}
+                      <div class="number">{{ loop.index }}.</div>
+                  {% endif %}
+                  <div class="code">{{ meaning.code }}</div>
+                  <div class="style">{{ meaning.style }}</div>
+                  <div class="text">{{ meaning.text }}.</div>
+                  <div class="contexts">
+                      {% for context in meaning.contexts %}
+                          <div class="context">
+                              <div class="text">{{ context.text }}</div>
+                              <div class="source">{{ context.source }}</div>
+                          </div>
+                      {% endfor %}
+                  </div>
+              </div>
+          {% endfor %} -->
+          <hr>
+      </div>
+</div>

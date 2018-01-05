@@ -24,7 +24,7 @@ export class DictionaryDetailComponent implements OnInit {
   }
 
   getDictionary(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('dictionaryId');
     this.dictionaryService
       .getDictionary(id)
       .subscribe(dictionary => this.dictionary = dictionary);

@@ -6,11 +6,42 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import { DictionaryDetailComponent } from './dictionary-detail/dictionary-detail.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dictionaries', pathMatch: 'full' },
-  { path: 'dictionaries', component: DictionariesComponent },
-  { path: 'dictionary/:id', component: DictionaryDetailComponent },
-  { path: 'dictionary/:id/articles', component: ArticlesComponent },
-  { path: 'article/:id', component: ArticleDetailComponent },
+  {
+    path: '',
+    redirectTo: '/dictionaries',
+    pathMatch: 'full',
+    data: {
+      name: 'home',
+    },
+  },
+  {
+    path: 'dictionaries',
+    component: DictionariesComponent,
+    data: {
+      name: 'dictionaries',
+    },
+  },
+  {
+    path: 'dictionary/:dictionaryId',
+    component: DictionaryDetailComponent,
+    data: {
+      name: 'dictionary',
+    },
+  },
+  {
+    path: 'dictionary/:dictionaryId/articles',
+    component: ArticlesComponent,
+    data: {
+      name: 'articles',
+    },
+  },
+  {
+    path: 'article/:articleId',
+    component: ArticleDetailComponent,
+    data: {
+      name: 'article',
+    },
+  },
 ];
 
 @NgModule({

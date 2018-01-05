@@ -1,18 +1,52 @@
-<table>
-  <tr>
-    <td>Id</td>
-    <td>{{article.id}}</td>
-  </tr>
-  <tr>
-    <td>Title</td>
-    <td>{{article.title}}</td>
-  </tr>
-  <tr>
-    <td>Grammar</td>
-    <td>{{article.grammar}}</td>
-  </tr>
-  <tr>
-    <td>Dictionary id</td>
-    <td>{{article.dictionary_id}}</td>
-  </tr>
-</table>
+<h1>{{ article.title | titlecase }}</h1>
+
+<div class="article-details-container">
+  <header>
+    <span class="article-title">{{ article.title }}{{ article.grammar ? ', ' : '' }}</span>
+    <span class="article-grammar">{{ article.grammar }}</span>
+  </header>
+  <!-- <section class="meanings">
+    <ol>
+      {% for meaning in article.meanings %}
+      <li class="meaning">
+        <span class="code">{{ meaning.code }}</span>
+        <span class="style">{{ meaning.style }}</span>
+        <span class="text">{{ meaning.text }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  <section class="links">
+    <ol>
+      {% for link in article.links %}
+      <li class="link">
+        <span class="type">{{ link.type }}</span>
+        <span class="article">{{ link.article.title }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  <section class="comments">
+    <ol>
+      {% for comment in article.comments %}
+      <li class="comment">
+        <span class="text">{{ comment.text }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  <section class="buttons row">
+    <div class="col-xs-6">
+      {% if is_granted('ROLE_USER') %}
+      <a class="btn btn-sm btn-primary" href="{{ path('article_edit', { 'dictionary': article.dictionary.id, 'id': article.id }) }}">
+        {{ 'buttons.edit'|trans|capitalize }}
+      </a>
+      {% endif %}
+    </div>
+    <div class="col-xs-6">
+      {% if delete_form is defined and is_granted('ROLE_USER') %} {{ form_start(delete_form) }}
+      <button class="btn btn-sm btn-danger pull-right">{{ 'buttons.delete'|trans|capitalize }}</button>
+      {{ form_end(delete_form) }} {% endif %}
+    </div>
+  </section> -->
+</div>
