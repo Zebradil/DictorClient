@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Dictionary } from '../dictionary';
 import { DictionaryService } from '../dictionary.service';
-import { SiteService } from '../site.service';
 
 @Component({
   selector: 'app-dictionaries',
@@ -20,12 +19,10 @@ export class DictionariesComponent implements OnInit {
   dictionaries: Dictionary[];
 
   constructor(
-    private dictionaryService: DictionaryService,
-    private siteService: SiteService
+    private dictionaryService: DictionaryService
   ) { }
 
   ngOnInit() {
-    this.site = this.siteService.getSiteInfo();
     this.getDictionaries();
   }
 
@@ -38,5 +35,4 @@ export class DictionariesComponent implements OnInit {
   onSelect(dictionary: Dictionary): void {
     this.selectedDictionary = dictionary;
   }
-
 }
