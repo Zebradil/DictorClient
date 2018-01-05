@@ -13,6 +13,7 @@ import { ArticleService } from './article.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SiteService } from './site.service';
 import { FooterComponent } from './footer/footer.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FooterComponent } from './footer/footer.component';
     DictionaryDetailComponent,
     ArticleDetailComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,

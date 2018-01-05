@@ -1,0 +1,8 @@
+<ol class="breadcrumb">
+  <li *ngFor="let breadcrumb of breadcrumbs">
+    <a *ngIf="breadcrumb.link; else elseBlock" routerLink="{{ breadcrumb.link }}">
+      {{ breadcrumb.title | titlecase }}
+    </a>
+    <ng-template #elseBlock>{{ breadcrumb.title | titlecase }}</ng-template>
+  </li>
+</ol>
