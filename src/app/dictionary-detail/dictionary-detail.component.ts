@@ -16,7 +16,6 @@ export class DictionaryDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dictionaryService: DictionaryService,
-    private location: Location
   ) { }
 
   ngOnInit(): void {
