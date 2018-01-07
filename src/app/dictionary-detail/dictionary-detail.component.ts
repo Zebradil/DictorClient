@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DictionaryService } from '../dictionary.service';
-import { Location } from '@angular/common';
 import { Dictionary } from '../dictionary';
 
 @Component({
