@@ -1,6 +1,8 @@
 export class Article {
-    id: number;
-    grammar: string;
-    title: string;
-    dictionary_id: number;
+  constructor(
+    public id: number,
+    public grammar: string,
+    public title: string,
+    public dictionary_id: number,
+  ) { }
 }
