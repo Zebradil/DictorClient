@@ -38,8 +38,4 @@ export class DictionaryDetailEditComponent implements OnInit {
     }
     saveResult.subscribe(dictionary => this.router.navigate(['/dictionary/' + dictionary.id]));
   }
-
-  diagnostic(): string {
-    return JSON.stringify(this.dictionary);
-  }
 }
