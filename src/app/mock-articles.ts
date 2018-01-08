@@ -1,6 +1,6 @@
 import { Article } from './article';
 
-export const ARTICLES: Article[] = [
+export let ARTICLES: Article[] = [
     {
         id: 1,
         grammar: '-a',

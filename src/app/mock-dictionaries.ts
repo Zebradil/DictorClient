@@ -1,6 +1,6 @@
 import { Dictionary } from './dictionary';
 
-export const DICTIONARIES: Dictionary[] = [
+export let DICTIONARIES: Dictionary[] = [
     {
         id: 1,
         name: 'Dictionary one',
