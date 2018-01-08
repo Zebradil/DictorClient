@@ -1,11 +1,10 @@
 <h1>
   {{page.title|titlecase}}
-  <!-- {{ common.glyphicon('plus-sign text-success', path('dictionary_new'), 'dictionary.create'|trans|capitalize, 'ROLE_ADMIN') }} -->
+  <a routerLink="/dictionary/new" class="glyphicon glyphicon-plus-sign text-success" aria-hidden="true" title="Create new dictionary"></a>
 </h1>
 
 <div class="dictionary-list">
-  <div *ngFor="let dictionary of dictionaries"
-    class="dictionary-list-item">
+  <div *ngFor="let dictionary of dictionaries" class="dictionary-list-item">
     <h3>
       <a routerLink="/dictionary/{{dictionary.id}}">{{dictionary.name|titlecase}}</a>
     </h3>

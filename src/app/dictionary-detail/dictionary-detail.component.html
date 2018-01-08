@@ -1,4 +1,7 @@
-<h1 class="title">{{dictionary.name}}</h1>
+<h1 class="title">
+  {{dictionary.name}}
+  <a routerLink="/dictionary/{{dictionary.id}}/edit" class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit dictionary"></a>
+</h1>
 
 <div class="dictionary-details-container">
   <section class="description">{{dictionary.description}}</section>
