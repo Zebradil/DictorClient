@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SiteService } from './site.service';
 import { FooterComponent } from './footer/footer.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { DictionaryDetailEditComponent } from './dictionary-detail-edit/dictionary-detail-edit.component';
 
 
 @NgModule({
@@ -25,11 +27,13 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     ArticleDetailComponent,
     NavbarComponent,
     FooterComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    DictionaryDetailEditComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
   ],
   providers: [DictionaryService, ArticleService, SiteService],
   bootstrap: [AppComponent]

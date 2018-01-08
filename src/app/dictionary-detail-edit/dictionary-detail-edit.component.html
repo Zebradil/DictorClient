@@ -1,0 +1,26 @@
+<h1 class="title">{{editMode ? 'Edit ' + dictionary.name : 'Create new dictionary'}}</h1>
+
+<form (ngSubmit)="onSubmit()" class="dictionary-detail-edit-container form-horizontal" #dictionaryForm="ngForm">
+  <section class="form-group">
+    <label class="col-sm-2 control-label required" for="name">Name:</label>
+    <div class="col-sm-10">
+      <input id="name" type="text" class="form-control" placeholder="Dictionary name" required [(ngModel)]="dictionary.name" name="name" #name="ngModel">
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name is required
+      </div>
+    </div>
+  </section>
+  <section class="form-group">
+    <label class="col-sm-2 control-label required" for="description">Description:</label>
+    <div class="col-sm-10">
+      <textarea id="description" class="form-control" [(ngModel)]="dictionary.description" name="description" placeholder="Enter description for the dictionary"></textarea>
+    </div>
+  </section>
+  <section class="buttons form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success" [disabled]="!dictionaryForm.form.valid">Save</button>
+    </div>
+  </section>
+</form>
+
+{{diagnostic()}}
