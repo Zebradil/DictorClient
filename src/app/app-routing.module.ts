@@ -4,6 +4,7 @@ import { DictionariesComponent } from './dictionaries/dictionaries.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { DictionaryDetailComponent } from './dictionary-detail/dictionary-detail.component';
+import { DictionaryDetailEditComponent } from './dictionary-detail-edit/dictionary-detail-edit.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,20 @@ const routes: Routes = [
     component: DictionariesComponent,
     data: {
       name: 'dictionaries',
+    },
+  },
+  {
+    path: 'dictionary/new',
+    component: DictionaryDetailEditComponent,
+    data: {
+      name: 'dictionary-edit',
+    },
+  },
+  {
+    path: 'dictionary/:dictionaryId/edit',
+    component: DictionaryDetailEditComponent,
+    data: {
+      name: 'dictionary-edit',
     },
   },
   {

@@ -47,6 +47,7 @@ export class BreadcrumbsComponent implements OnInit {
       case 'home': return this.getBreadcrumbsForHome();
       case 'dictionaries': return this.getBreadcrumbsForDictionaries();
       case 'dictionary': return this.getBreadcrumbsForDictionary(of(+route.paramMap.get('dictionaryId')));
+      case 'dictionary-edit': return this.getBreadcrumbsForDictionaryEdit(of(+route.paramMap.get('dictionaryId')));
       case 'articles': return this.getBreadcrumbsForArticles(of(+route.paramMap.get('dictionaryId')));
       case 'article': return this.getBreadcrumbsForArticle(of(+route.paramMap.get('articleId')));
       default: return [];
@@ -94,6 +95,29 @@ export class BreadcrumbsComponent implements OnInit {
 
     return this.getBreadcrumbsForDictionaries(true)
       .concat([dictionaryBreadcrumb]);
+  }
+
+
+  getBreadcrumbsForDictionaryEdit(observableDictionaryId: Observable<number>): IBreadcrumb[] {
+    const dictionaryBreadcrumb: IBreadcrumb = {
+      title: '',
+      link: null,
+    };
+
+    observableDictionaryId.subscribe(dictionaryId => {
+      if (dictionaryId) {
+        this.dictionaryService
+          .getDictionary(dictionaryId)
+          .subscribe(dictionary => {
+            dictionaryBreadcrumb.title = 'Edit ' + dictionary.name;
+          });
+      } else {
+        dictionaryBreadcrumb.title = 'New dictionary';
+      }
+    });
+
+    return this.getBreadcrumbsForDictionaries(true)
+      .concat(dictionaryBreadcrumb);
   }
 
 
