@@ -13,7 +13,7 @@ export class DictionaryDetailComponent implements OnInit {
   dictionary: Dictionary;
 
   constructor(
-    private route: ActivatedRoute,
+    private activeRoute: ActivatedRoute,
     private dictionaryService: DictionaryService,
   ) { }
 
@@ -22,7 +22,7 @@ export class DictionaryDetailComponent implements OnInit {
   }
 
   getDictionary(): void {
-    const id = +this.route.snapshot.paramMap.get('dictionaryId');
+    const id = +this.activeRoute.snapshot.paramMap.get('dictionaryId');
     this.dictionaryService
       .getDictionary(id)
       .subscribe(dictionary => this.dictionary = dictionary);
