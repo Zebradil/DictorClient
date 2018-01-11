@@ -1,12 +1,17 @@
+<h1 class="title">
+  {{dictionary.name}} : List of articles
+  <a routerLink="/dictionary/{{dictionary.id}}/article/new" class="glyphicon glyphicon-plus-sign text-success" aria-hidden="true"
+    title="Create new article"></a>
+</h1>
 <div class="article-list">
-      <div *ngFor="let article of articles" class="article article-list-item">
-          <div class="title">
-              <a routerLink="/article/{{ article.id }}">
-                  {{ article.title | titlecase }}{{ article.grammar ? ',' : '' }}
-              </a>
-          </div>
-          <div *ngIf="article.grammar" class="grammar">{{ article.grammar }}</div>
-          <!-- {% for meaning in article.meanings %}
+  <div *ngFor="let article of articles" class="article article-list-item">
+    <div class="title">
+      <a routerLink="/article/{{ article.id }}">
+        {{ article.title | titlecase }}{{ article.grammar ? ',' : '' }}
+      </a>
+    </div>
+    <div *ngIf="article.grammar" class="grammar">{{ article.grammar }}</div>
+    <!-- {% for meaning in article.meanings %}
               <div class="meaning">
                   {% if loop.length > 1 %}
                       <div class="number">{{ loop.index }}.</div>
@@ -24,6 +29,6 @@
                   </div>
               </div>
           {% endfor %} -->
-          <hr>
-      </div>
+    <hr>
+  </div>
 </div>

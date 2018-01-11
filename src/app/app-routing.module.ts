@@ -5,6 +5,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { DictionaryDetailComponent } from './dictionary-detail/dictionary-detail.component';
 import { DictionaryDetailEditComponent } from './dictionary-detail-edit/dictionary-detail-edit.component';
+import { ArticleDetailEditComponent } from './article-detail-edit/article-detail-edit.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,13 @@ const routes: Routes = [
     component: ArticlesComponent,
     data: {
       name: 'articles',
+    },
+  },
+  {
+    path: 'dictionary/:dictionaryId/article/new',
+    component: ArticleDetailEditComponent,
+    data: {
+      name: 'article-edit',
     },
   },
   {

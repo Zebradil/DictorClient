@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../article.service';
 import { Location } from '@angular/common';
 import { Article } from '../article';
+import { DictionaryService } from '../dictionary.service';
 
 @Component({
   selector: 'app-articles',
@@ -12,11 +13,13 @@ import { Article } from '../article';
 })
 export class ArticlesComponent implements OnInit {
 
+  dictionary: Dictionary;
   articles: Article[];
 
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService,
+    private dictionaryService: DictionaryService,
     private location: Location
   ) { }
 
@@ -26,6 +29,9 @@ export class ArticlesComponent implements OnInit {
 
   getArticles(): void {
     const dictionaryId = +this.route.snapshot.paramMap.get('dictionaryId');
+    this.dictionaryService
+      .getDictionary(dictionaryId)
+      .subscribe(dictionary => this.dictionary = dictionary);
     this.articleService
       .getArticles(dictionaryId)
       .subscribe(articles => this.articles = articles);
