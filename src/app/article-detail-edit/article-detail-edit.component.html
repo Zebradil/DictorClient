@@ -1,0 +1,45 @@
+<h1 class="title">{{editMode ? 'Edit ' + article.name : 'Create new article'}}</h1>
+
+<form (ngSubmit)="onSubmit()"
+      class="article-detail-edit-container form-horizontal"
+      #articleForm="ngForm">
+  <section class="form-group">
+    <label class="col-sm-2 control-label required"
+           for="title">Title:</label>
+    <div class="col-sm-10">
+      <input id="title"
+             type="text"
+             class="form-control"
+             placeholder="Article title"
+             required
+             [(ngModel)]="article.title"
+             name="title"
+             #title="ngModel">
+      <div [hidden]="title.valid || title.pristine"
+           class="alert alert-danger">
+        Title is required
+      </div>
+    </div>
+  </section>
+  <section class="form-group">
+    <label class="col-sm-2 control-label required"
+           for="grammar">Grammar:</label>
+    <div class="col-sm-10">
+      <input id="grammar"
+             type="text"
+             class="form-control"
+             required
+             [(ngModel)]="article.grammar"
+             name="grammar"
+             placeholder="Enter grammar for the article"
+             #grammar="ngModel">
+    </div>
+  </section>
+  <section class="buttons form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit"
+              class="btn btn-success"
+              [disabled]="!articleForm.form.valid">Save</button>
+    </div>
+  </section>
+</form>

@@ -16,6 +16,7 @@ import { SiteService } from './site.service';
 import { FooterComponent } from './footer/footer.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { DictionaryDetailEditComponent } from './dictionary-detail-edit/dictionary-detail-edit.component';
+import { ArticleDetailEditComponent } from './article-detail-edit/article-detail-edit.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { DictionaryDetailEditComponent } from './dictionary-detail-edit/dictiona
     FooterComponent,
     BreadcrumbsComponent,
     DictionaryDetailEditComponent,
+    ArticleDetailEditComponent,
   ],
   imports: [
     BrowserModule,
