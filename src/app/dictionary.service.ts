@@ -33,9 +33,7 @@ export class DictionaryService {
   updateDictionary(dictionary: Dictionary): Observable<Dictionary> {
     return this.getDictionary(dictionary.id)
       .pipe(switchMap((oldDictionary: Dictionary, i: number) => {
-        oldDictionary.name = dictionary.name;
-        oldDictionary.description = dictionary.description;
-        return of(oldDictionary);
+        return of(Object.assign(oldDictionary, dictionary));
       }));
   }
 }
