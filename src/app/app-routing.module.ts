@@ -65,6 +65,13 @@ const routes: Routes = [
       name: 'article',
     },
   },
+  {
+    path: 'article/:articleId/edit',
+    component: ArticleDetailEditComponent,
+    data: {
+      name: 'article-edit',
+    },
+  },
 ];
 
 @NgModule({

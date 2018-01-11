@@ -1,4 +1,7 @@
-<h1>{{ article.title | titlecase }}</h1>
+<h1>
+  {{ article.title | titlecase }}
+  <a routerLink="/article/{{article.id}}/edit" class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit article"></a>
+</h1>
 
 <div class="article-details-container">
   <header>
