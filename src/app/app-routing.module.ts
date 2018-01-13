@@ -24,49 +24,49 @@ const routes: Routes = [
     },
   },
   {
-    path: 'dictionary/new',
+    path: 'dictionaries/new',
     component: DictionaryDetailEditComponent,
     data: {
       name: 'dictionary-edit',
     },
   },
   {
-    path: 'dictionary/:dictionaryId/edit',
+    path: 'dictionaries/:dictionaryId/edit',
     component: DictionaryDetailEditComponent,
     data: {
       name: 'dictionary-edit',
     },
   },
   {
-    path: 'dictionary/:dictionaryId',
+    path: 'dictionaries/:dictionaryId',
     component: DictionaryDetailComponent,
     data: {
       name: 'dictionary',
     },
   },
   {
-    path: 'dictionary/:dictionaryId/articles',
+    path: 'dictionaries/:dictionaryId/articles',
     component: ArticlesComponent,
     data: {
       name: 'articles',
     },
   },
   {
-    path: 'dictionary/:dictionaryId/article/new',
+    path: 'dictionaries/:dictionaryId/articles/new',
     component: ArticleDetailEditComponent,
     data: {
       name: 'article-edit',
     },
   },
   {
-    path: 'article/:articleId',
+    path: 'articles/:articleId',
     component: ArticleDetailComponent,
     data: {
       name: 'article',
     },
   },
   {
-    path: 'article/:articleId/edit',
+    path: 'articles/:articleId/edit',
     component: ArticleDetailEditComponent,
     data: {
       name: 'article-edit',

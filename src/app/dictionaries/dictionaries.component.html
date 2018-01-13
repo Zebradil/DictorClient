@@ -1,16 +1,16 @@
 <h1>
   {{page.title|titlecase}}
-  <a routerLink="/dictionary/new" class="glyphicon glyphicon-plus-sign text-success" aria-hidden="true" title="Create new dictionary"></a>
+  <a routerLink="/dictionaries/new" class="glyphicon glyphicon-plus-sign text-success" aria-hidden="true" title="Create new dictionary"></a>
 </h1>
 
 <div class="dictionary-list">
   <div *ngFor="let dictionary of dictionaries" class="dictionary-list-item">
     <h3>
-      <a routerLink="/dictionary/{{dictionary.id}}">{{dictionary.name|titlecase}}</a>
+      <a routerLink="/dictionaries/{{dictionary.id}}">{{dictionary.name|titlecase}}</a>
     </h3>
     <p class="dictionary-description">{{dictionary.description}}</p>
     <h4>
-      <a routerLink="/dictionary/{{dictionary.id}}/articles">Articles list</a>
+      <a routerLink="/dictionaries/{{dictionary.id}}/articles">Articles list</a>
     </h4>
     <hr>
   </div>

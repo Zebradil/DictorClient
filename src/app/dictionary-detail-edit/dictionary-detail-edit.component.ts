@@ -36,6 +36,6 @@ export class DictionaryDetailEditComponent implements OnInit {
     } else {
       saveResult = this.dictionaryService.createDictionary(this.dictionary);
     }
-    saveResult.subscribe(dictionary => this.router.navigate(['/dictionary/' + dictionary.id]));
+    saveResult.subscribe(dictionary => this.router.navigate(['/dictionaries/' + dictionary.id]));
   }
 }

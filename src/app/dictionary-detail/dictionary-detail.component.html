@@ -1,13 +1,13 @@
 <h1 class="title">
   {{dictionary.name}}
-  <a routerLink="/dictionary/{{dictionary.id}}/edit" class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit dictionary"></a>
+  <a routerLink="/dictionaries/{{dictionary.id}}/edit" class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit dictionary"></a>
 </h1>
 
 <div class="dictionary-details-container">
   <section class="description">{{dictionary.description}}</section>
   <section class="articles">
     <h2>
-      <a routerLink="/dictionary/{{dictionary.id}}/articles">
+      <a routerLink="/dictionaries/{{dictionary.id}}/articles">
         Articles list
       </a>
     </h2>

@@ -45,6 +45,6 @@ export class ArticleDetailEditComponent implements OnInit {
     } else {
       saveResult = this.articleService.createArticle(this.article);
     }
-    saveResult.subscribe(article => this.router.navigate(['/article/' + article.id]));
+    saveResult.subscribe(article => this.router.navigate(['/articles/' + article.id]));
   }
 }

@@ -89,7 +89,7 @@ export class BreadcrumbsComponent implements OnInit {
           .getDictionary(dictionaryId)
           .subscribe(dictionary => {
             dictionaryBreadcrumb.title = dictionary.name;
-            dictionaryBreadcrumb.link = withLink ? '/dictionary/' + dictionary.id : null;
+            dictionaryBreadcrumb.link = withLink ? '/dictionaries/' + dictionary.id : null;
           });
       });
 
@@ -133,7 +133,7 @@ export class BreadcrumbsComponent implements OnInit {
 
     observableDictionaryId
       .subscribe(dictionaryId => {
-        articlesBreadcrumb.link = withLink ? '/dictionary/' + dictionaryId + '/articles' : null;
+        articlesBreadcrumb.link = withLink ? '/dictionaries/' + dictionaryId + '/articles' : null;
       });
 
     return this.getBreadcrumbsForDictionary(observableDictionaryId, true)
@@ -158,7 +158,7 @@ export class BreadcrumbsComponent implements OnInit {
             .getArticle(articleId)
             .subscribe(article => {
               articleBreadcrumb.title = article.title;
-              articleBreadcrumb.link = withLink ? '/article/' + articleId : null;
+              articleBreadcrumb.link = withLink ? '/articles/' + articleId : null;
               observer.next(article.dictionary_id);
               observer.complete();
             });
