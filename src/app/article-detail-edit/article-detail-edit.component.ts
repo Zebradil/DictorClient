@@ -50,4 +50,13 @@ export class ArticleDetailEditComponent implements OnInit {
     }
     saveResult.subscribe(article => this.router.navigate(['/articles/' + article.id]));
   }
+
+  deleteArticle(article: Article) {
+    if (confirm('You\'re going to delete the article. Are you sure?')) {
+      this.articleService
+        .deleteArticle(article)
+        .subscribe(res => this.router.navigate(['/dictionaries/' + article.dictionary_id + '/articles']));
+    }
+    return false;
+  }
 }

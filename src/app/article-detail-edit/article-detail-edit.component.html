@@ -1,5 +1,7 @@
 <h1 class="title">
   {{editMode ? 'Edit ' + article.title : 'Create new article'}}
+  <a *ngIf="editMode" href="#" (click)="deleteArticle(article)" class="glyphicon glyphicon-minus-sign text-danger" aria-hidden="true"
+    title="Delete the article"></a>
 </h1>
 
 <form (ngSubmit)="onSubmit()"
