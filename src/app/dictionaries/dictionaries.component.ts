@@ -15,7 +15,6 @@ export class DictionariesComponent implements OnInit {
 
   site: object;
 
-  selectedDictionary: Dictionary;
   dictionaries: Dictionary[];
 
   constructor(
@@ -30,9 +29,5 @@ export class DictionariesComponent implements OnInit {
     this.dictionaryService
       .getDictionaries()
       .subscribe(dictionaries => this.dictionaries = dictionaries);
-  }
-
-  onSelect(dictionary: Dictionary): void {
-    this.selectedDictionary = dictionary;
   }
 }
