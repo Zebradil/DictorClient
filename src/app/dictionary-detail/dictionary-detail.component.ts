@@ -10,7 +10,7 @@ import { Dictionary } from '../dictionary';
 })
 export class DictionaryDetailComponent implements OnInit {
 
-  dictionary: Dictionary;
+  dictionary: Dictionary = new Dictionary(0, '');
 
   constructor(
     private activeRoute: ActivatedRoute,

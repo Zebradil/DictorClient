@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class ArticleDetailComponent implements OnInit {
 
-  article: Article;
+  article: Article = new Article(0, '', '', 0);
 
   constructor(
     private route: ActivatedRoute,

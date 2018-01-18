@@ -13,7 +13,7 @@ import { DictionaryService } from '../dictionary.service';
 })
 export class ArticlesComponent implements OnInit {
 
-  dictionary: Dictionary;
+  dictionary: Dictionary = new Dictionary(0, '');
   articles: Article[];
 
   constructor(
