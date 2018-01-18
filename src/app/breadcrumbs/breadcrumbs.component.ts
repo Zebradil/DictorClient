@@ -50,6 +50,7 @@ export class BreadcrumbsComponent implements OnInit {
       case 'dictionary-edit': return this.getBreadcrumbsForDictionaryEdit(of(+route.paramMap.get('dictionaryId')));
       case 'articles': return this.getBreadcrumbsForArticles(of(+route.paramMap.get('dictionaryId')));
       case 'article': return this.getBreadcrumbsForArticle(of(+route.paramMap.get('articleId')));
+      case 'article-edit': return this.getBreadcrumbsForArticleEdit(of(+route.paramMap.get('dictionaryId')), of(+route.paramMap.get('articleId')));
       default: return [];
     }
   }
@@ -166,6 +167,41 @@ export class BreadcrumbsComponent implements OnInit {
     });
 
     return this.getBreadcrumbsForArticles(observableDictionaryId, true)
+      .concat([articleBreadcrumb]);
+  }
+
+  getBreadcrumbsForArticleEdit(
+    observableDictionaryId: Observable<number>,
+    observableArticleId: Observable<number>,
+  ): IBreadcrumb[] {
+
+    const articleBreadcrumb = {
+      title: '',
+      link: null,
+    };
+
+    const observableReliableDictionaryId = new Observable<number>(observer => {
+      observableArticleId
+        .subscribe(articleId => {
+          if (articleId) {
+            this.articleService
+              .getArticle(articleId)
+              .subscribe(article => {
+                articleBreadcrumb.title = 'Edit ' + article.title;
+                observer.next(article.dictionary_id);
+                observer.complete();
+              });
+          } else {
+            articleBreadcrumb.title = 'New article';
+            observableDictionaryId.subscribe(dictionaryId => {
+              observer.next(dictionaryId);
+              observer.complete();
+            });
+          }
+        });
+    });
+
+    return this.getBreadcrumbsForArticles(observableReliableDictionaryId, true)
       .concat([articleBreadcrumb]);
   }
 }
