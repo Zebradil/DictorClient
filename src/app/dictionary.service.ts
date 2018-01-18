@@ -1,39 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Dictionary } from './dictionary';
-import { DICTIONARIES } from './mock-dictionaries';
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { switchMap } from 'rxjs/operators';
-
-function getMaxId(collection: Dictionary[]): number {
-  return collection
-    ? collection.reduce((prev, curr) => prev.id < curr.id ? curr : prev).id
-    : 0;
-}
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class DictionaryService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  getUrl(path: string): string {
+    return 'http://localhost:8000/api/v1/' + path;
+  }
 
   getDictionaries(): Observable<Dictionary[]> {
-    return of(DICTIONARIES);
+    return this.http.get<Dictionary[]>(this.getUrl('dictionaries'));
   }
 
   getDictionary(id: number): Observable<Dictionary> {
-    return of(DICTIONARIES.find(dictionary => dictionary.id === id));
+    return this.http.get<Dictionary>(this.getUrl('dictionaries/' + id));
   }
 
   createDictionary(dictionary: Dictionary): Observable<Dictionary> {
-    dictionary.id = getMaxId(DICTIONARIES) + 1;
-    DICTIONARIES.push(dictionary);
-    return of(dictionary);
+    return this.http.post<Dictionary>(this.getUrl('dictionaries'), dictionary);
   }
 
   updateDictionary(dictionary: Dictionary): Observable<Dictionary> {
-    return this.getDictionary(dictionary.id)
-      .pipe(switchMap((oldDictionary: Dictionary, i: number) => {
-        return of(Object.assign(oldDictionary, dictionary));
-      }));
+    return this.http.put<Dictionary>(this.getUrl('dictionaries/' + dictionary.id), dictionary);
+  }
+
+  deleteDictionary(dictionary: Dictionary): Observable<Object> {
+    return this.http.delete(this.getUrl('dictionaries/' + dictionary.id));
   }
 }

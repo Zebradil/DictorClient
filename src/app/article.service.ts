@@ -1,43 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Article } from './article';
-import { ARTICLES } from './mock-articles';
-import { of } from 'rxjs/observable/of';
-import { switchMap } from 'rxjs/operators';
-
-function getMaxId(collection: Article[]): number {
-  return collection
-    ? collection.reduce((prev, curr) => prev.id < curr.id ? curr : prev).id
-    : 0;
-}
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ArticleService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
-  getArticle(id: number): Observable<Article> {
-    return of(ARTICLES.find(article => article.id === id));
+  getUrl(path: string): string {
+    return 'http://localhost:8000/api/v1/' + path;
   }
 
-  getAllArticles(): Observable<Article[]> {
-    return of(ARTICLES);
+  getArticle(id: number): Observable<Article> {
+    return this.http.get<Article>(this.getUrl('articles/' + id));
   }
 
   getArticles(dictionary_id: number): Observable<Article[]> {
-    return of(ARTICLES.filter(article => article.dictionary_id === dictionary_id));
+    return this.http.get<Article[]>(this.getUrl('dictionaries/' + dictionary_id + '/articles'));
   }
 
   createArticle(article: Article): Observable<Article> {
-    article.id = getMaxId(ARTICLES) + 1;
-    ARTICLES.push(article);
-    return of(article);
+    return this.http.post<Article>(this.getUrl('dictionaries/' + article.dictionary_id + '/articles'), article);
   }
 
   updateArticle(article: Article): Observable<Article> {
-    return this.getArticle(article.id)
-      .pipe(switchMap((oldArticle: Article, i: number) => {
-        return of(Object.assign(oldArticle, article));
-      }));
+    return this.http.put<Article>(this.getUrl('articles/' + article.id), article);
+  }
+
+  deleteArticle(article: Article): Observable<Object> {
+    return this.http.delete(this.getUrl('articles/' + article.id));
   }
 }

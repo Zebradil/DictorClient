@@ -17,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { DictionaryDetailEditComponent } from './dictionary-detail-edit/dictionary-detail-edit.component';
 import { ArticleDetailEditComponent } from './article-detail-edit/article-detail-edit.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ArticleDetailEditComponent } from './article-detail-edit/article-detail
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     AppRoutingModule,
   ],
