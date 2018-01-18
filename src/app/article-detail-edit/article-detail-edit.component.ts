@@ -12,6 +12,7 @@ import { DictionaryService } from '../dictionary.service';
   styleUrls: ['./article-detail-edit.component.scss']
 })
 export class ArticleDetailEditComponent implements OnInit {
+  editMode: boolean;
 
   article: Article = new Article(0, '', '', 0);
 
@@ -25,11 +26,13 @@ export class ArticleDetailEditComponent implements OnInit {
   ngOnInit() {
     const articleId = +this.activeRoute.snapshot.paramMap.get('articleId');
     if (articleId) {
+      this.editMode = true;
       // TODO handle wrong id
       this.articleService
         .getArticle(articleId)
         .subscribe(article => this.article = article);
     } else {
+      this.editMode = false;
       const dictionaryId = +this.activeRoute.snapshot.paramMap.get('dictionaryId');
       // TODO handle wrong id
       this.dictionaryService

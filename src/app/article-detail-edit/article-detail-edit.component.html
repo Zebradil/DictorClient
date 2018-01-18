@@ -1,4 +1,6 @@
-<h1 class="title">{{editMode ? 'Edit ' + article.name : 'Create new article'}}</h1>
+<h1 class="title">
+  {{editMode ? 'Edit ' + article.title : 'Create new article'}}
+</h1>
 
 <form (ngSubmit)="onSubmit()"
       class="article-detail-edit-container form-horizontal"

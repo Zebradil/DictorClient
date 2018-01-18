@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./dictionary-detail-edit.component.scss']
 })
 export class DictionaryDetailEditComponent implements OnInit {
+  editMode: boolean;
 
   dictionary: Dictionary = new Dictionary(0, '');
 
@@ -23,9 +24,12 @@ export class DictionaryDetailEditComponent implements OnInit {
   ngOnInit() {
     const dictionaryId = +this.activeRoute.snapshot.paramMap.get('dictionaryId');
     if (dictionaryId) {
+      this.editMode = true;
       this.dictionaryService
         .getDictionary(dictionaryId)
         .subscribe(dictionary => this.dictionary = dictionary);
+    } else {
+      this.editMode = false;
     }
   }
 
