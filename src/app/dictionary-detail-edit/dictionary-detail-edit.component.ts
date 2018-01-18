@@ -42,4 +42,13 @@ export class DictionaryDetailEditComponent implements OnInit {
     }
     saveResult.subscribe(dictionary => this.router.navigate(['/dictionaries/' + dictionary.id]));
   }
+
+  deleteDictionary(dictionary: Dictionary) {
+    if (confirm('You\'re going to delete the dictionary. Are you sure?')) {
+      this.dictionaryService
+        .deleteDictionary(dictionary)
+        .subscribe(res => this.router.navigate(['/dictionaries']));
+    }
+    return false;
+  }
 }
