@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { Article } from '../article';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../article.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { DictionaryService } from '../dictionary.service';
+import { Meaning } from '../meaning';
+import { MeaningContext } from '../meaning-context';
+import { ArticleLink } from '../article-link';
+import { ArticleComment } from '../article-comment';
 
 @Component({
   selector: 'app-article-detail-edit',
@@ -13,7 +18,7 @@ import { DictionaryService } from '../dictionary.service';
 })
 export class ArticleDetailEditComponent implements OnInit {
   editMode: boolean;
-
+  articleForm: FormGroup;
   article: Article = new Article(0, '', '', 0);
 
   constructor(
@@ -21,16 +26,22 @@ export class ArticleDetailEditComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private articleService: ArticleService,
     private dictionaryService: DictionaryService,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
+    this.articleForm = this.initArticle(new Article(0, '', '', 0));
+
     const articleId = +this.activeRoute.snapshot.paramMap.get('articleId');
     if (articleId) {
       this.editMode = true;
       // TODO handle wrong id
       this.articleService
         .getArticle(articleId)
-        .subscribe(article => this.article = article);
+        .subscribe(article => {
+          this.article = article;
+          this.articleForm = this.initArticle(article);
+        });
     } else {
       this.editMode = false;
       const dictionaryId = +this.activeRoute.snapshot.paramMap.get('dictionaryId');
@@ -41,14 +52,75 @@ export class ArticleDetailEditComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  initArticle(article: Article): FormGroup {
+    return this.fb.group({
+      title: [article.title, Validators.required],
+      grammar: [article.grammar],
+      meanings: this.fb.array(article.meanings.map(meaning => this.initMeaning(meaning))),
+      links: this.fb.array(article.links.map(link => this.initLink(link))),
+      comments: this.fb.array(article.comments.map(comment => this.initComment(comment))),
+    });
+  }
+
+  initMeaning(meaning: Meaning): FormGroup {
+    return this.fb.group({
+      code: [meaning.code],
+      style: [meaning.style],
+      text: [meaning.text, Validators.required],
+      contexts: this.fb.array(meaning.contexts.map(context => this.initMeaningContext(context))),
+    });
+  }
+
+  initMeaningContext(context: MeaningContext): FormGroup {
+    return this.fb.group({
+      text: [context.text, Validators.required],
+      source: [context.source],
+    });
+  }
+
+  initLink(link: ArticleLink): FormGroup {
+    return this.fb.group({
+      type: [link.type, Validators.required],
+      target: [link.target, Validators.required],
+    });
+  }
+
+  initComment(comment: ArticleComment): FormGroup {
+    return this.fb.group({
+      text: [comment.text, Validators.required],
+    });
+  }
+
+  save() {
+    const saveArticle = this.prepareSaveArticle();
     let saveResult: Observable<Article>;
     if (this.article.id) {
-      saveResult = this.articleService.updateArticle(this.article);
+      saveResult = this.articleService.updateArticle(saveArticle);
     } else {
-      saveResult = this.articleService.createArticle(this.article);
+      saveResult = this.articleService.createArticle(saveArticle);
     }
     saveResult.subscribe(article => this.router.navigate(['/articles/' + article.id]));
+  }
+
+  prepareSaveArticle(): Article {
+    const model = this.articleForm.value;
+    const links = model.links.map(link => Object.assign({}, link));
+    const comments = model.comments.map(comment => Object.assign({}, comment));
+    const meanings = model.meanings.map((meaning) => {
+      const contexts = meaning.contexts.map(context => Object.assign({}, context));
+      return Object.assign({}, meaning, { contexts: contexts });
+    });
+    // TODO implement `clone`/`extend` method on models
+    const saveArticle: Article = {
+      id: this.article.id,
+      dictionary_id: this.article.dictionary_id,
+      grammar: model.grammar,
+      title: model.title,
+      links: links,
+      comments: comments,
+      meanings: meanings,
+    };
+    return saveArticle;
   }
 
   deleteArticle(article: Article) {
@@ -58,5 +130,9 @@ export class ArticleDetailEditComponent implements OnInit {
         .subscribe(res => this.router.navigate(['/dictionaries/' + article.dictionary_id + '/articles']));
     }
     return false;
+  }
+
+  d(v: any): string {
+    return JSON.stringify(v);
   }
 }

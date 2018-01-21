@@ -1,12 +1,17 @@
 <h1 class="title">
   {{editMode ? 'Edit ' + article.title : 'Create new article'}}
-  <a *ngIf="editMode" href="#" (click)="deleteArticle(article)" class="glyphicon glyphicon-minus-sign text-danger" aria-hidden="true"
-    title="Delete the article"></a>
+  <a *ngIf="editMode"
+     href="#"
+     (click)="deleteArticle(article)"
+     class="glyphicon glyphicon-minus-sign text-danger"
+     aria-hidden="true"
+     title="Delete the article"></a>
 </h1>
 
-<form (ngSubmit)="onSubmit()"
-      class="article-detail-edit-container form-horizontal"
-      #articleForm="ngForm">
+<form [formGroup]="articleForm"
+      (ngSubmit)="save(articleForm)"
+      class="article-detail-edit-container form-horizontal">
+
   <section class="form-group">
     <label class="col-sm-2 control-label required"
            for="title">Title:</label>
@@ -16,15 +21,14 @@
              class="form-control"
              placeholder="Article title"
              required
-             [(ngModel)]="article.title"
-             name="title"
-             #title="ngModel">
-      <div [hidden]="title.valid || title.pristine"
+             formControlName="title">
+      <div *ngIf="!articleForm.controls.title.valid"
            class="alert alert-danger">
         Title is required
       </div>
     </div>
   </section>
+
   <section class="form-group">
     <label class="col-sm-2 control-label required"
            for="grammar">Grammar:</label>
@@ -33,17 +37,38 @@
              type="text"
              class="form-control"
              required
-             [(ngModel)]="article.grammar"
-             name="grammar"
-             placeholder="Enter grammar for the article"
-             #grammar="ngModel">
+             formControlName="grammar"
+             placeholder="Enter grammar for the article">
     </div>
   </section>
+
+  <div formArrayName="meanings">
+    <section *ngFor="let meaning of articleForm.controls.meanings.controls; let i=index"
+             [formGroupName]="i">
+      <app-meaning-detail-edit [meaningForm]="meaning"></app-meaning-detail-edit>
+    </section>
+  </div>
+
+  <div formArrayName="links">
+    <section *ngFor="let link of articleForm.controls.links.controls; let i=index"
+             [formGroupName]="i">
+      <app-article-link-detail-edit [linkForm]="link"></app-article-link-detail-edit>
+    </section>
+  </div>
+
+  <div formArrayName="comments">
+    <section *ngFor="let comment of articleForm.controls.comments.controls; let i=index"
+             [formGroupName]="i">
+      <app-article-comment-detail-edit [commentForm]="comment"></app-article-comment-detail-edit>
+    </section>
+  </div>
+
   <section class="buttons form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit"
               class="btn btn-success"
-              [disabled]="!articleForm.form.valid">Save</button>
+              [disabled]="!articleForm.valid">Save</button>
     </div>
   </section>
+
 </form>
