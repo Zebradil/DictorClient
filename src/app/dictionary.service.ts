@@ -1,36 +1,30 @@
-import { Injectable } from '@angular/core';
 import { Dictionary } from './dictionary';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { BaseResourceService } from './base-resource.service';
 
-@Injectable()
-export class DictionaryService {
-
-  constructor(
-    private http: HttpClient,
-  ) { }
+export class DictionaryService extends BaseResourceService<Dictionary> {
 
   getUrl(path: string): string {
     return 'http://localhost:8000/api/v1/' + path;
   }
 
   getDictionaries(): Observable<Dictionary[]> {
-    return this.http.get<Dictionary[]>(this.getUrl('dictionaries'));
+    return this.getItems(this.getUrl('dictionaries'));
   }
 
   getDictionary(id: number): Observable<Dictionary> {
-    return this.http.get<Dictionary>(this.getUrl('dictionaries/' + id));
+    return this.getItem(this.getUrl('dictionaries/' + id), id.toString());
   }
 
   createDictionary(dictionary: Dictionary): Observable<Dictionary> {
-    return this.http.post<Dictionary>(this.getUrl('dictionaries'), dictionary);
+    return this.createItem(this.getUrl('dictionaries'), dictionary, (d) => d.id.toString());
   }
 
   updateDictionary(dictionary: Dictionary): Observable<Dictionary> {
-    return this.http.put<Dictionary>(this.getUrl('dictionaries/' + dictionary.id), dictionary);
+    return this.updateItem(this.getUrl('dictionaries/' + dictionary.id), dictionary, dictionary.id.toString());
   }
 
   deleteDictionary(dictionary: Dictionary): Observable<Object> {
-    return this.http.delete(this.getUrl('dictionaries/' + dictionary.id));
+    return this.deleteItem(this.getUrl('dictionaries/' + dictionary.id), dictionary.id.toString());
   }
 }
