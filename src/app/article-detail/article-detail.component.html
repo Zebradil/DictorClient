@@ -1,6 +1,9 @@
 <h1>
   {{ article.title | titlecase }}
-  <a routerLink="/articles/{{article.id}}/edit" class="glyphicon glyphicon-edit" aria-hidden="true" title="Edit article"></a>
+  <a routerLink="/articles/{{article.id}}/edit"
+     class="glyphicon glyphicon-edit"
+     aria-hidden="true"
+     title="Edit article"></a>
 </h1>
 
 <div class="article-details-container">
@@ -8,40 +11,38 @@
     <span class="article-title">{{ article.title }}{{ article.grammar ? ', ' : '' }}</span>
     <span class="article-grammar">{{ article.grammar }}</span>
   </header>
-  <!-- <section class="meanings">
+  <section class="meanings">
     <ol>
-      {% for meaning in article.meanings %}
-      <li class="meaning">
+      <li class="meaning"
+          *ngFor="let meaning of article.meanings">
         <span class="code">{{ meaning.code }}</span>
         <span class="style">{{ meaning.style }}</span>
         <span class="text">{{ meaning.text }}</span>
       </li>
-      {% endfor %}
     </ol>
   </section>
   <section class="links">
     <ol>
-      {% for link in article.links %}
-      <li class="link">
+      <li class="link"
+          *ngFor="let link of article.links">
         <span class="type">{{ link.type }}</span>
-        <span class="article">{{ link.article.title }}</span>
+        <span class="article">{{ link.target }}</span>
       </li>
-      {% endfor %}
     </ol>
   </section>
   <section class="comments">
     <ol>
-      {% for comment in article.comments %}
-      <li class="comment">
+      <li class="comment"
+          *ngFor="let comment of article.comments">
         <span class="text">{{ comment.text }}</span>
       </li>
-      {% endfor %}
     </ol>
   </section>
-  <section class="buttons row">
+  <!--<section class="buttons row">
     <div class="col-xs-6">
       {% if is_granted('ROLE_USER') %}
-      <a class="btn btn-sm btn-primary" href="{{ path('article_edit', { 'dictionary': article.dictionary.id, 'id': article.id }) }}">
+      <a class="btn btn-sm btn-primary"
+         href="{{ path('article_edit', { 'dictionary': article.dictionary.id, 'id': article.id }) }}">
         {{ 'buttons.edit'|trans|capitalize }}
       </a>
       {% endif %}
