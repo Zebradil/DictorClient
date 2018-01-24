@@ -62,18 +62,44 @@
     </div>
   </div>
 
-  <div formArrayName="links">
-    <section *ngFor="let link of articleForm.controls.links.controls; let i=index"
-             [formGroupName]="i">
-      <app-article-link-detail-edit [linkForm]="link"></app-article-link-detail-edit>
-    </section>
+  <div formArrayName="links"
+       class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        Links
+      </h3>
+      <a href="#"
+         (click)="addMeaning(articleForm.controls.links)"
+         class="glyphicon glyphicon-plus-sign text-success"
+         aria-hidden="true"
+         title="Add another meaning"></a>
+    </div>
+    <div class="panel-body">
+      <section *ngFor="let link of articleForm.controls.links.controls; let i=index"
+               [formGroupName]="i">
+        <app-article-link-detail-edit [linkForm]="link"></app-article-link-detail-edit>
+      </section>
+    </div>
   </div>
 
-  <div formArrayName="comments">
-    <section *ngFor="let comment of articleForm.controls.comments.controls; let i=index"
-             [formGroupName]="i">
-      <app-article-comment-detail-edit [commentForm]="comment"></app-article-comment-detail-edit>
-    </section>
+  <div formArrayName="comments"
+       class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        Comments
+      </h3>
+      <a href="#"
+         (click)="addMeaning(articleForm.controls.comments)"
+         class="glyphicon glyphicon-plus-sign text-success"
+         aria-hidden="true"
+         title="Add another meaning"></a>
+    </div>
+    <div class="panel-body">
+      <section *ngFor="let comment of articleForm.controls.comments.controls; let i=index"
+               [formGroupName]="i">
+        <app-article-comment-detail-edit [commentForm]="comment"></app-article-comment-detail-edit>
+      </section>
+    </div>
   </div>
 
   <section class="buttons form-group">

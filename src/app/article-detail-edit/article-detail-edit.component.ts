@@ -132,6 +132,16 @@ export class ArticleDetailEditComponent implements OnInit {
     return false;
   }
 
+  addLink(links: FormArray): boolean {
+    links.push(this.initLink(new ArticleLink()));
+    return false;
+  }
+
+  addComment(comments: FormArray): boolean {
+    comments.push(this.initComment(new ArticleComment()));
+    return false;
+  }
+
   addMeaning(meanings: FormArray): boolean {
     meanings.push(this.initMeaning(new Meaning()));
     return false;
