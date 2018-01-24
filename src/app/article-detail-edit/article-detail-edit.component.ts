@@ -132,6 +132,11 @@ export class ArticleDetailEditComponent implements OnInit {
     return false;
   }
 
+  addMeaning(meanings: FormArray): boolean {
+    meanings.push(this.initMeaning(new Meaning()));
+    return false;
+  }
+
   d(v: any): string {
     return JSON.stringify(v);
   }

@@ -42,11 +42,24 @@
     </div>
   </section>
 
-  <div formArrayName="meanings">
-    <section *ngFor="let meaning of articleForm.controls.meanings.controls; let i=index"
-             [formGroupName]="i">
-      <app-meaning-detail-edit [meaningForm]="meaning"></app-meaning-detail-edit>
-    </section>
+  <div formArrayName="meanings"
+       class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        Meanings
+      </h3>
+      <a href="#"
+         (click)="addMeaning(articleForm.controls.meanings)"
+         class="glyphicon glyphicon-plus-sign text-success"
+         aria-hidden="true"
+         title="Add another meaning"></a>
+    </div>
+    <div class="panel-body">
+      <section *ngFor="let meaning of articleForm.controls.meanings.controls; let i=index"
+               [formGroupName]="i">
+        <app-meaning-detail-edit [meaningForm]="meaning"></app-meaning-detail-edit>
+      </section>
+    </div>
   </div>
 
   <div formArrayName="links">
