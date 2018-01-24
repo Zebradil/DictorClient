@@ -102,6 +102,13 @@ export class ArticleDetailEditComponent implements OnInit {
     saveResult.subscribe(article => this.router.navigate(['/articles/' + article.id]));
   }
 
+  resetForm() {
+    if (confirm('You\'re going to discard all changes. Are you sure?')) {
+      this.articleForm = this.initArticle(this.article);
+    }
+    return false;
+  }
+
   prepareSaveArticle(): Article {
     const model = this.articleForm.value;
     const links = model.links.map(link => Object.assign({}, link));

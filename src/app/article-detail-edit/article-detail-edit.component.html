@@ -122,6 +122,9 @@
       <button type="submit"
               class="btn btn-success"
               [disabled]="!articleForm.valid">Save</button>
+      <button (click)="resetForm()"
+              class="btn btn-info"
+              [disabled]="articleForm.pristine">Reset</button>
     </div>
   </section>
 
