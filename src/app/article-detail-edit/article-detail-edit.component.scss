@@ -1,9 +1,20 @@
 .panel-heading {
-  h3 {
-    display: inline-block;
-  }
-  .glyphicon {
-    font-size: 1.5em;
-    float: right;
-  }
+    h3 {
+        display: inline-block;
+    }
+    .glyphicon {
+        font-size: 1.5em;
+        float: right;
+    }
+}
+
+section {
+    position: relative;
+    >.glyphicon {
+        display: inline-block;
+        position: absolute;
+        font-size: 1.5em;
+        top: 0.5em;
+        left: 0.5em;
+    }
 }

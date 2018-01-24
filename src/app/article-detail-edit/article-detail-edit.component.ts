@@ -137,13 +137,37 @@ export class ArticleDetailEditComponent implements OnInit {
     return false;
   }
 
+  deleteLink(index: number): boolean {
+    if (confirm('You\'re going to delete the link. Are you sure?')) {
+      const control = <FormArray>this.articleForm.controls.links;
+      control.removeAt(index);
+    }
+    return false;
+  }
+
   addComment(comments: FormArray): boolean {
     comments.push(this.initComment(new ArticleComment()));
     return false;
   }
 
+  deleteComment(index: number): boolean {
+    if (confirm('You\'re going to delete the comment. Are you sure?')) {
+      const control = <FormArray>this.articleForm.controls.comments;
+      control.removeAt(index);
+    }
+    return false;
+  }
+
   addMeaning(meanings: FormArray): boolean {
     meanings.push(this.initMeaning(new Meaning()));
+    return false;
+  }
+
+  deleteMeaning(index: number): boolean {
+    if (confirm('You\'re going to delete the meaning. Are you sure?')) {
+      const control = <FormArray>this.articleForm.controls.meanings;
+      control.removeAt(index);
+    }
     return false;
   }
 

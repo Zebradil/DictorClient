@@ -58,6 +58,11 @@
       <section *ngFor="let meaning of articleForm.controls.meanings.controls; let i=index"
                [formGroupName]="i">
         <app-meaning-detail-edit [meaningForm]="meaning"></app-meaning-detail-edit>
+        <a href="#"
+           (click)="deleteMeaning(i)"
+           class="glyphicon glyphicon-minus-sign text-danger"
+           aria-hidden="true"
+           title="Delete this meaning"></a>
       </section>
     </div>
   </div>
@@ -78,6 +83,11 @@
       <section *ngFor="let link of articleForm.controls.links.controls; let i=index"
                [formGroupName]="i">
         <app-article-link-detail-edit [linkForm]="link"></app-article-link-detail-edit>
+        <a href="#"
+           (click)="deleteLink(i)"
+           class="glyphicon glyphicon-minus-sign text-danger"
+           aria-hidden="true"
+           title="Delete this link"></a>
       </section>
     </div>
   </div>
@@ -98,6 +108,11 @@
       <section *ngFor="let comment of articleForm.controls.comments.controls; let i=index"
                [formGroupName]="i">
         <app-article-comment-detail-edit [commentForm]="comment"></app-article-comment-detail-edit>
+        <a href="#"
+           (click)="deleteComment(i)"
+           class="glyphicon glyphicon-minus-sign text-danger"
+           aria-hidden="true"
+           title="Delete this comment"></a>
       </section>
     </div>
   </div>
