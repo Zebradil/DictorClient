@@ -36,11 +36,24 @@
       </div>
     </div>
 
-    <div formArrayName="contexts">
-      <section *ngFor="let context of meaningForm.controls.contexts.controls; let i=index"
-               [formGroupName]="i">
-        <app-meaning-context-detail-edit [meaningContextForm]="context"></app-meaning-context-detail-edit>
-      </section>
+    <div formArrayName="contexts"
+         class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Contexts
+        </h3>
+        <a href="#"
+           (click)="addContext(meaningForm.controls.contexts)"
+           class="glyphicon glyphicon-plus-sign text-success"
+           aria-hidden="true"
+           title="Add another context"></a>
+      </div>
+      <div class="panel-body">
+        <section *ngFor="let context of meaningForm.controls.contexts.controls; let i=index"
+                 [formGroupName]="i">
+          <app-meaning-context-detail-edit [meaningContextForm]="context"></app-meaning-context-detail-edit>
+        </section>
+      </div>
     </div>
 
   </div>

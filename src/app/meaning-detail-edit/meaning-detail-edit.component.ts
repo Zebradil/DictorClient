@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
+import { MeaningContext } from '../meaning-context';
 
 @Component({
   selector: 'app-meaning-detail-edit',
@@ -11,9 +12,23 @@ export class MeaningDetailEditComponent implements OnInit {
   @Input()
   meaningForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+  ) { }
 
   ngOnInit() {
   }
 
+  // TODO move this methods and methods from parent component to standalone class for form managing
+  initContext(context: MeaningContext): FormGroup {
+    return this.fb.group({
+      text: [context.text, Validators.required],
+      source: [context.source],
+    });
+  }
+
+  addContext(contexts: FormArray): boolean {
+    contexts.push(this.initContext(new MeaningContext()));
+    return false;
+  }
 }
