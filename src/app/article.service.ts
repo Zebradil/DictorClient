@@ -1,11 +1,12 @@
 import { Observable } from 'rxjs/Observable';
 import { Article } from './article';
 import { BaseResourceService } from './base-resource.service';
+import { environment } from '../environments/environment';
 
 export class ArticleService extends BaseResourceService<Article> {
 
   getUrl(path: string): string {
-    return 'http://localhost:8000/api/v1/' + path;
+    return environment.apiEndpoint + path;
   }
 
   getArticle(id: number): Observable<Article> {

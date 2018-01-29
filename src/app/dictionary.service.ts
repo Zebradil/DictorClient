@@ -1,11 +1,12 @@
 import { Dictionary } from './dictionary';
 import { Observable } from 'rxjs/Observable';
 import { BaseResourceService } from './base-resource.service';
+import { environment } from '../environments/environment';
 
 export class DictionaryService extends BaseResourceService<Dictionary> {
 
   getUrl(path: string): string {
-    return 'http://localhost:8000/api/v1/' + path;
+    return environment.apiEndpoint + path;
   }
 
   getDictionaries(): Observable<Dictionary[]> {
