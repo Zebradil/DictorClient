@@ -8,7 +8,8 @@ import { SiteService } from '../site.service';
 })
 export class NavbarComponent implements OnInit {
 
-  site: object;
+  // TODO replace any by interface (SiteInfo for ex.)
+  site: any;
 
   constructor(
     private siteService: SiteService

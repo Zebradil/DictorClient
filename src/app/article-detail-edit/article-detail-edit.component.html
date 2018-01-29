@@ -9,7 +9,7 @@
 </h1>
 
 <form [formGroup]="articleForm"
-      (ngSubmit)="save(articleForm)"
+      (ngSubmit)="save()"
       class="article-detail-edit-container form-horizontal">
 
   <section class="form-group">
@@ -49,13 +49,13 @@
         Meanings
       </h3>
       <a href="#"
-         (click)="addMeaning(articleForm.controls.meanings)"
+         (click)="addMeaning(getFormArray(articleForm, 'meanings'))"
          class="glyphicon glyphicon-plus-sign text-success"
          aria-hidden="true"
          title="Add another meaning"></a>
     </div>
     <div class="panel-body">
-      <section *ngFor="let meaning of articleForm.controls.meanings.controls; let i=index"
+      <section *ngFor="let meaning of getFormArray(articleForm, 'meanings').controls; let i=index"
                [formGroupName]="i">
         <app-meaning-detail-edit [meaningForm]="meaning"></app-meaning-detail-edit>
         <a href="#"
@@ -74,13 +74,13 @@
         Links
       </h3>
       <a href="#"
-         (click)="addLink(articleForm.controls.links)"
+         (click)="addLink(getFormArray(articleForm, 'links'))"
          class="glyphicon glyphicon-plus-sign text-success"
          aria-hidden="true"
          title="Add another link"></a>
     </div>
     <div class="panel-body">
-      <section *ngFor="let link of articleForm.controls.links.controls; let i=index"
+      <section *ngFor="let link of getFormArray(articleForm, 'links').controls; let i=index"
                [formGroupName]="i">
         <app-article-link-detail-edit [linkForm]="link"></app-article-link-detail-edit>
         <a href="#"
@@ -99,13 +99,13 @@
         Comments
       </h3>
       <a href="#"
-         (click)="addComment(articleForm.controls.comments)"
+         (click)="addComment(getFormArray(articleForm, 'comments'))"
          class="glyphicon glyphicon-plus-sign text-success"
          aria-hidden="true"
          title="Add another comment"></a>
     </div>
     <div class="panel-body">
-      <section *ngFor="let comment of articleForm.controls.comments.controls; let i=index"
+      <section *ngFor="let comment of getFormArray(articleForm, 'comments').controls; let i=index"
                [formGroupName]="i">
         <app-article-comment-detail-edit [commentForm]="comment"></app-article-comment-detail-edit>
         <a href="#"

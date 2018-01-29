@@ -43,13 +43,13 @@
           Contexts
         </h3>
         <a href="#"
-           (click)="addContext(meaningForm.controls.contexts)"
+           (click)="addContext(getFormArray(meaningForm, 'contexts'))"
            class="glyphicon glyphicon-plus-sign text-success"
            aria-hidden="true"
            title="Add another context"></a>
       </div>
       <div class="panel-body">
-        <section *ngFor="let context of meaningForm.controls.contexts.controls; let i=index"
+        <section *ngFor="let context of getFormArray(meaningForm, 'contexts').controls; let i=index"
                  [formGroupName]="i">
           <app-meaning-context-detail-edit [meaningContextForm]="context"></app-meaning-context-detail-edit>
         </section>

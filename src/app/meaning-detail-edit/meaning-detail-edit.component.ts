@@ -27,6 +27,10 @@ export class MeaningDetailEditComponent implements OnInit {
     });
   }
 
+  getFormArray(form: FormGroup, name: string): FormArray {
+    return form.controls[name] as FormArray;
+  }
+
   addContext(contexts: FormArray): boolean {
     contexts.push(this.initContext(new MeaningContext()));
     return false;

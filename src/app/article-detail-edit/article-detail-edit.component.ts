@@ -52,6 +52,10 @@ export class ArticleDetailEditComponent implements OnInit {
     }
   }
 
+  getFormArray(form: FormGroup, name: string): FormArray {
+    return form.controls[name] as FormArray;
+  }
+
   initArticle(article: Article): FormGroup {
     return this.fb.group({
       title: [article.title, Validators.required],
